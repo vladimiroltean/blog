@@ -1,0 +1,57 @@
+Host l
+	User aldi
+	HostName vlalex-laptop
+	Compression yes
+	ForwardX11 yes
+	Ciphers blowfish-cbc,arcfour
+Host le
+	User aldi
+	HostName edimax-aldi-ac
+	Compression yes
+	ForwardX11 yes
+	Ciphers blowfish-cbc,arcfour
+Host p
+	User aldi
+	HostName vlalex-pc-amd
+	Compression yes
+	ForwardX11 yes
+	Ciphers blowfish-cbc,arcfour
+Host r
+	User admin
+	HostName anva.go.ro
+	Compression yes
+	ForwardX11 no
+Host rr
+	User admin
+	HostName anva.go.ro
+	Compression yes
+	ForwardX11 no
+Host rd
+	User aldi
+	HostName router
+	Compression yes
+	ForwardX11 no
+	Port 2022
+Host rrd
+	User aldi
+	HostName anva.go.ro
+	Compression yes
+	ForwardX11 no
+	Port 2022
+Host rp
+	User aldi
+	HostName anva.go.ro
+	Port 3928
+	Compression yes
+	ForwardX11 no
+Host reverse-pc
+	RemoteForward 8889 localhost:22
+	HostName anva.go.ro
+	Port 3928
+Host fep
+	User ioan.oltean
+	HostName fep.grid.pub.ro
+	Compression yes
+	ForwardX11 yes
+	TCPKeepAlive yes
+	ServerAliveInterval 60
