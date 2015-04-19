@@ -1,0 +1,32 @@
+set number
+set cindent
+set autoread
+set so=7
+set ruler
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+"set smarttab
+set shiftwidth=4 softtabstop=4
+set tabstop=4
+set noexpandtab
+"set expandtab
+set lbr
+set tw=80
+set ai
+set si
+set wrap
+set backupdir=~/.vim/_backup/
+set encoding=utf8
+" Mark tabs and spaces.
+set list listchars=tab:»\ ,trail:·,extends:»,precedes:«
+" Load manual pages.
+runtime ftplugin/man.vim
+" Set tex flavor.
+let g:tex_flavor = 'latex'
+set clipboard=unnamedplus
+set guioptions+=a
+set t_Co=256
+color molokai
+
+" Don't let Vim indent things that we want to paste
+set paste

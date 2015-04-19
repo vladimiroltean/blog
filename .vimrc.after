@@ -1,0 +1,12 @@
+so .vimrc.basic
+so .vimrc.syntastic
+so .vimrc.keymaps
+
+
+"set lines=60
+"set columns=200
+
+" stop Nerd tree from auto refreshing on focus
+autocmd! AuNERDTreeCmd FocusGained
+
+
