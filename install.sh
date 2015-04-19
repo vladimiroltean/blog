@@ -1,7 +1,7 @@
 #/bin/bash
 
-cp .bash* .vim* ~/
-cp hosts /etc/
+cp ./.bash* ./.vim* ~/
+cp ./hosts /etc/
 mkdir -p ~/.ssh/
-cp .ssh_config ~/.ssh/config
+cp ./.ssh_config ~/.ssh/config
 . ~/.bashrc

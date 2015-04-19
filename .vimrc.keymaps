@@ -1,6 +1,9 @@
 nnoremap <F5> :GundoToggle<CR>
 nnoremap <F6> :NeoCompleteToggle<CR>
 
+nnoremap <c-[> :CtrlPtjump<cr>
+vnoremap <c-[> :CtrlPtjumpVisual<cr>
+
 " Downloaded from
 " github.com/gotbletu/shownotes/blob/master/mlocate_vdiscover_vim_locate.txt
 
