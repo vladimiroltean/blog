@@ -109,21 +109,3 @@ export PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jni
 export PROMPT_DIRTRIM=3
 
-vdiscover() {
-# demo video:http://www.youtube.com/watch?v=X0KPl5O006M
-# usage: vdiscover <search>
-# example:vdiscover makean vs wild
-# OR operator:vdiscover 'man vs wild (mkv|avi)'
-# $ ending in:vdiscover 'man vs wild (mkv|avi)$'
-# vdiscover '(naruto|shingeki) (mkv|avi)$'
-# vdiscover naruto shippudden mkv$
-
-# to quit vim quituickly use: shift + zz or u can always use the :q / :q!
-# method
-
-# escape spaces, pipe and parentheses
-        keyword=$(echo "$@" |  sed -e 's/ /.*/g' -e 's:|:\\|:g' -e
-'s:(:\\(:g' -e 's:):\\):g')
-locate -ir "$keyword"keyword | vim -R -
-}
-

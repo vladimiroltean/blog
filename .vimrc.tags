@@ -1,3 +1,5 @@
+let g:SuperTabCompleteCase = 'match'
+
 " Ctags
 " Shortcuts: ^]  (go to tag)
 "            ^t  (go back)
@@ -8,7 +10,7 @@
 "            :tselect <tag_name> or
 "            :!rgrep <tag_name> . (search for <tag_name>)
 "            Ctrl-P (plugin for fuzzy search)
-set tags=./tags.headers,./tags,tags;
+set tags=./tags.headers;/,./tags;/,tags;/;
 map [I :cs find c <C-r><C-w><CR>
 
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',

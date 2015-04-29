@@ -48,6 +48,12 @@ Host reverse-pc
 	RemoteForward 8889 localhost:22
 	HostName anva.go.ro
 	Port 3928
+Host rpi
+	User pi
+	HostName anva.go.ro
+	Port 3931
+	Compression yes
+	ForwardX11 yes
 Host fep
 	User ioan.oltean
 	HostName fep.grid.pub.ro

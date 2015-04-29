@@ -1,6 +1,7 @@
 source ~/.vimrc.basic
 source ~/.vimrc.syntastic
 source ~/.vimrc.keymaps
+source ~/.vimrc.tags
 
 "set lines=60
 "set columns=200

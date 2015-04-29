@@ -27,6 +27,3 @@ set clipboard=unnamedplus
 set guioptions+=a
 set t_Co=256
 color molokai
-
-" Don't let Vim indent things that we want to paste
-set paste
