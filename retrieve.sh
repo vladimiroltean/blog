@@ -10,3 +10,4 @@ cp ~/.vimrc.tags .
 cp ~/.ssh/config .ssh_config
 rsync -avr ~/bin .
 
+cp ~/.profile .

@@ -6,3 +6,4 @@ mkdir -p ~/.ssh/
 cp ./.ssh_config ~/.ssh/config
 rsync -avr ./bin ~
 . ~/.bashrc
+cp ./.profile ~
