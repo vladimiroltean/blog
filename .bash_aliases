@@ -51,5 +51,5 @@ vdiscover() {
     locate -ir "$keyword" | vim -R -
 }
 
-# Tell tmux we have 256-color terminal
+# Tell tmux we want 256 color terminal
 alias tmux='tmux -2'

@@ -1,10 +1,16 @@
 #/bin/bash
 
-cp ./.profile      ~
-cp ./.bashrc       ~
-cp ./.bash_aliases ~
-cp ./.vimrc.*      ~
-cp ./.tmux.conf    ~
+cp ./.profile             ~
+cp ./.bashrc              ~
+cp ./.bash_aliases        ~
+cp ./.gvimrc.after        ~
+cp ./.vimrc.after         ~
+cp ./.vimrc.autocomplete  ~
+cp ./.vimrc.basic         ~
+cp ./.vimrc.keymaps       ~
+cp ./.vimrc.syntastic     ~
+cp ./.vimrc.tags          ~
+cp ./.tmux.conf           ~
 mkdir -p ~/.ssh/
 cp ./.ssh_config ~/.ssh/config
 rsync -avr ./bin ~

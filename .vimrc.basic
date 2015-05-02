@@ -25,5 +25,7 @@ runtime ftplugin/man.vim
 let g:tex_flavor = 'latex'
 set clipboard=unnamedplus
 set guioptions+=a
-set t_Co=256
+"set t_Co=256
 color molokai
+" For better tmux compatibility
+set mouse=a

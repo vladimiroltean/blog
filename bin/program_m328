@@ -4,11 +4,11 @@ HEXFILE=$1
 
 if [ $# -eq 1 ] && [ -f $HEXFILE ]
 then
-	avrdude -c avrispv2 -P /dev/ttyUSB0 -p m328p -F -U flash:w:$HEXFILE
-	avrdude -c avrispv2 -P /dev/ttyUSB0 -p m328p -F -U lfuse:w:0x5E:m
-	avrdude -c avrispv2 -P /dev/ttyUSB0 -p m328p -F -U hfuse:w:0xD9:m
-	avrdude -c avrispv2 -P /dev/ttyUSB0 -p m328p -F -U efuse:w:0xFD:m
-	avrdude -c avrispv2 -P /dev/ttyUSB0 -p m328p -F -U lock:w:0xFF:m
+	avrdude -c avrispv2 -P /dev/ttyUSB0 -p m324pa -F -U flash:w:$HEXFILE
+	avrdude -c avrispv2 -P /dev/ttyUSB0 -p m324pa -F -U lfuse:w:0xff:m
+	avrdude -c avrispv2 -P /dev/ttyUSB0 -p m324pa -F -U hfuse:w:0xda:m
+	avrdude -c avrispv2 -P /dev/ttyUSB0 -p m324pa -F -U efuse:w:0xff:m
+	avrdude -c avrispv2 -P /dev/ttyUSB0 -p m324pa -F -U lock:w:0x2f:m
 else
 	echo "Usage: " $0 " <file>.hex"
 fi

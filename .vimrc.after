@@ -1,6 +1,7 @@
 source ~/.vimrc.basic
 source ~/.vimrc.syntastic
 source ~/.vimrc.keymaps
+source ~/.vimrc.autocomplete
 source ~/.vimrc.tags
 
 "set lines=60

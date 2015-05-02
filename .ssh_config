@@ -10,6 +10,7 @@ Host p
 	Port 3928
 	Compression yes
 	ForwardX11 yes
+	ForwardX11Trusted yes
 	Ciphers blowfish-cbc,arcfour
 Host l
 	User aldi
@@ -17,6 +18,7 @@ Host l
 	Port 3929
 	Compression yes
 	ForwardX11 yes
+	ForwardX11Trusted yes
 	Ciphers blowfish-cbc,arcfour
 Host edimax
 	User aldi
@@ -24,6 +26,7 @@ Host edimax
 	Port 3930
 	Compression yes
 	ForwardX11 yes
+	ForwardX11Trusted yes
 	Ciphers blowfish-cbc,arcfour
 Host rpi
 	User pi
@@ -31,12 +34,13 @@ Host rpi
 	Port 3931
 	Compression yes
 	ForwardX11 yes
+	ForwardX11Trusted yes
 Host rd
 	User aldi
 	HostName anva.go.ro
+	Port 2022
 	Compression yes
 	ForwardX11 no
-	Port 2022
 Host reverse-pc
 	RemoteForward 8889 localhost:22
 	HostName anva.go.ro
@@ -46,6 +50,7 @@ Host reverse
 	HostName localhost
 	Compression yes
 	ForwardX11 yes
+	ForwardX11Trusted yes
 Host fep
 	User ioan.oltean
 	HostName fep.grid.pub.ro
