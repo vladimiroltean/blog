@@ -10,6 +10,7 @@ cp ./.vimrc.basic         ~
 cp ./.vimrc.keymaps       ~
 cp ./.vimrc.syntastic     ~
 cp ./.vimrc.tags          ~
+cp ./.vimpagerrc          ~
 cp ./.tmux.conf           ~
 mkdir -p ~/.ssh/
 cp ./.ssh_config ~/.ssh/config
