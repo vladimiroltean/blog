@@ -34,8 +34,8 @@ set clipboard=unnamedplus
 set guioptions+=a
 " For better tmux compatibility (mouse scrolling)
 set mouse=a
+set term=xterm-256color
 " Colorscheme
-set t_Co=256
 colorscheme molokai
 " Make vim use nice colors
 set background = "dark"

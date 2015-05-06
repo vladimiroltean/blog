@@ -108,5 +108,4 @@ PATH=$PATH:"/opt/altera/13.0sp1/quartus/bin"
 export PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jni
 export PROMPT_DIRTRIM=3
-#export PAGER='most'
 export PAGER='vimpager'
