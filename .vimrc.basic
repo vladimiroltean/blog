@@ -1,4 +1,5 @@
 set number
+set relativenumber
 set cindent
 " Break compatibility with vi
 set nocp

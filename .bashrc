@@ -101,8 +101,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-PATH=$PATH:"/opt/microchip/xc32/v1.31/bin"
-PATH=$PATH:"/opt/microchip/xc16/v1.21/bin"
 PATH=$PATH:"/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64"
 PATH=$PATH:"/opt/altera/13.0sp1/quartus/bin"
 export PATH
