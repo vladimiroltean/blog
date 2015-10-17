@@ -46,3 +46,4 @@ highlight NonText   ctermbg=none
 highlight VertSplit ctermbg=none
 highlight LineNr    ctermbg=none
 highlight Special   ctermbg=none
+set wildmenu

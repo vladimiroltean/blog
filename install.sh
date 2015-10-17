@@ -1,7 +1,6 @@
 #/bin/bash
 
-cp ./.profile             ~
-cp ./.bashrc              ~
+cp ./.bashrc.after        ~
 cp ./.bash_aliases        ~
 cp ./.gvimrc.after        ~
 cp ./.vimrc.after         ~
@@ -12,7 +11,5 @@ cp ./.vimrc.syntastic     ~
 cp ./.vimrc.tags          ~
 cp ./.vimpagerrc          ~
 cp ./.tmux.conf           ~
-mkdir -p ~/.ssh/
-cp ./.ssh_config ~/.ssh/config
+mkdir -p ~/.ssh/ && cp ./.ssh_config ~/.ssh/config
 rsync -avr ./bin ~
-. ~/.bashrc

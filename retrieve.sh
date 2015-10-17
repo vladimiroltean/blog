@@ -1,7 +1,6 @@
 #/bin/bash
 
-cp ~/.profile            .
-cp ~/.bashrc             .
+cp ~/.bashrc.after       .
 cp ~/.bash_aliases       .
 cp ~/.tmux.conf          .
 cp ~/.gvimrc.after       .
@@ -15,4 +14,3 @@ cp ~/.vimpagerrc         .
 cp ~/.ssh/config .ssh_config
 rsync -avr ~/bin .
 
-cp ~/.profile .
