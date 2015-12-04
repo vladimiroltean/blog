@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Windows VM:
+# "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifyhd "Fedora 20-2.vdi" --resize 102400
+# Extend LVM physical partition with gparted
+# Then extend logical partition inside LVM with following command:
+lvextend -l +100%PVS /dev/mapper/fedora-home
+# Then extend filesystem inside logical partition with following command:
+resize2fs /dev/mapper/fedora-home

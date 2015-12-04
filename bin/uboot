@@ -1,0 +1,25 @@
+# RAM boot
+# TFTP server on zro04
+setenv netdev eth0
+setenv serverip 192.168.1.1
+setenv bootfile b56933/files2/uImage-t1024rdb.bin
+setenv fdtfile b56933/files2/uImage-t1024rdb.dtb
+setenv ramdiskfile  b56933/files2/fsl-image-core-t1024rdb.ext2.gz.u-boot
+setenv othbootargs "isolcpus=1 usdpaa_mem=256M bportals=s0 qportals=s0 fsl_fm_max_frm=9000"
+run ramboot
+
+# NFS boot
+# TFTP and NFS server (for rootfs) on atlas2
+
+# Cand bootez cu DTS-ul standard bootez de pe eth3, altfel, cand am DTS-ul de
+# USDPAA, bootez de pe eth0
+setenv b56933_netdev      eth0
+setenv b56933_serverip    192.168.1.253
+setenv b56933_fdtfile     b56933/uImage-t1024rdb-usdpaa.dtb
+setenv b56933_bootfile    b56933/uImage-t1024rdb.bin
+setenv b56933_rootpath    /srv/nfsroot/b56933/fsl-image-core-t1024rdb
+setenv b56933_othbootargs "isolcpus=1 usdpaa_mem=256M bportals=s0 qportals=s0 fsl_fm_max_frm=9000"
+setenv b56933_myconfig    'setenv netdev $b56933_netdev; setenv serverip $b56933_serverip; setenv fdtfile $b56933_fdtfile; setenv bootfile $b56933_bootfile; setenv rootpath $b56933_rootpath; setenv othbootargs $b56933_othbootargs'
+setenv b56933_nfsbootm    'setenv bootargs root=/dev/nfs rw nfsroot=$serverip:$rootpath,vers=3 ip=$ipaddr:$serverip:$gatewayip:$netmask:$hostname:$netdev:off console=$consoledev,$baudrate $othbootargs'
+setenv b56933_myboot      'run b56933_myconfig; run b56933_nfsbootm; tftp $loadaddr $bootfile;tftp $fdtaddr $fdtfile;bootm $loadaddr - $fdtaddr'
+run b56933_myboot

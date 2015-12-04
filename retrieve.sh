@@ -3,6 +3,10 @@
 cp ~/.bashrc.after       .
 cp ~/.bash_aliases       .
 cp ~/.tmux.conf          .
+cp ~/.tmux.compat.conf   .
+cp ~/.tmux.keys.conf     .
+cp ~/.tmux.mouse.conf    .
+cp ~/.tmux.visual.conf   .
 cp ~/.gvimrc.after       .
 cp ~/.vimrc.after        .
 cp ~/.vimrc.autocomplete .

@@ -1,6 +1,8 @@
-set number
-set relativenumber
-set cindent
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Basic stuff to make the thing usable, shouldn't need to edit these
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" You might have to manually create this folder
+set backupdir=~/.vim/_backup/
 " Break compatibility with vi
 set nocp
 " For files edited outside of vim
@@ -10,20 +12,9 @@ set scrolloff=7
 set ruler
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
-"set smarttab
-set shiftwidth=4 softtabstop=4
-set tabstop=4
-set noexpandtab
-"set expandtab
-" Line break
-set lbr
-set tw=80
-" Autoindent
-set ai
-set si
-set wrap
-set backupdir=~/.vim/_backup/
 set encoding=utf8
+" Show autocompletion menu for command mode
+set wildmenu
 " Mark tabs and spaces.
 set list listchars=tab:»\ ,trail:·,extends:»,precedes:«
 " Load manual pages.
@@ -36,14 +27,32 @@ set guioptions+=a
 " For better tmux compatibility (mouse scrolling)
 set mouse=a
 set term=xterm-256color
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" De gustibus non disputandum
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set number
+"set relativenumber
+"set smarttab
+set shiftwidth=4 softtabstop=4
+set tabstop=4
+set noexpandtab
+"set expandtab
+set autoindent
+"set smartindent
+"set cindent
+" Line break
+set lbr
+set tw=80
+"set wrap
 " Colorscheme
-colorscheme molokai
+colorscheme bluegreen
+" Use "bluegreen" for now, previously was using "molokai"
 " Make vim use nice colors
-set background = "dark"
+"set background = "dark"
 " Disable opaque background
-highlight Normal    ctermbg=none
-highlight NonText   ctermbg=none
-highlight VertSplit ctermbg=none
-highlight LineNr    ctermbg=none
-highlight Special   ctermbg=none
-set wildmenu
+"highlight Normal    ctermbg=none
+"highlight NonText   ctermbg=none
+"highlight VertSplit ctermbg=none
+"highlight LineNr    ctermbg=none
+"highlight Special   ctermbg=none

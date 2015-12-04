@@ -1,0 +1,9 @@
+#!/bin/bash
+
+lars list test_ports
+lars list boards
+lars info aida
+lars list test_ports
+lars reserve tc2_c2_7.p1
+lars link aida.rgmii_p1 tc2_c2_7.p1
+lars release tc2_c2_7.p1 # (--force)
