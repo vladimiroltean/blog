@@ -22,7 +22,6 @@ alias la='ls -A'
 alias l='ls -CF'
 
 alias pls='sudo $(history -p \!\!)'
-alias ..='cd ..'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -46,5 +45,3 @@ vdiscover() {
 
 # Tell tmux we want 256 color terminal
 alias tmux='tmux -2'
-# Workaround for Fedora, where Vim is compiled without clipboard support
-alias vim='gvim -v'

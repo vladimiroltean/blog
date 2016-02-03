@@ -48,6 +48,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+shopt -s autocd
+
 export PROMPT_DIRTRIM=3
 export PAGER='vimpager'
 
