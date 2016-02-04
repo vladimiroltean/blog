@@ -46,8 +46,8 @@ set lbr
 set tw=80
 "set wrap
 " Colorscheme
-colorscheme bluegreen
 " Use "bluegreen" for now, previously was using "molokai"
+colorscheme bluegreen
 " Make vim use nice colors
 "set background = "dark"
 " Disable opaque background
@@ -56,3 +56,4 @@ colorscheme bluegreen
 "highlight VertSplit ctermbg=none
 "highlight LineNr    ctermbg=none
 "highlight Special   ctermbg=none
+set wildmenu

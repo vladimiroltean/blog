@@ -52,4 +52,4 @@ shopt -s autocd
 
 export PROMPT_DIRTRIM=3
 export PAGER='vimpager'
-
+export PATH+=":$HOME/.gem/ruby/2.2.0/bin"
