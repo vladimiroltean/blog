@@ -37,13 +37,13 @@ set guioptions+=a
 set mouse=a
 set term=xterm-256color
 " Colorscheme
-colorscheme molokai
+colorscheme bluegreen
 " Make vim use nice colors
-set background = "dark"
+"set background = "dark"
 " Disable opaque background
-highlight Normal    ctermbg=none
-highlight NonText   ctermbg=none
-highlight VertSplit ctermbg=none
-highlight LineNr    ctermbg=none
-highlight Special   ctermbg=none
+"highlight Normal    ctermbg=none
+"highlight NonText   ctermbg=none
+"highlight VertSplit ctermbg=none
+"highlight LineNr    ctermbg=none
+"highlight Special   ctermbg=none
 set wildmenu
