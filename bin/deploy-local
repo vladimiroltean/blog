@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cp $@ ~/sdk-deploy/t4240rdb/sdk-v1.6/

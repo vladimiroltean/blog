@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cp $@ /srv/tftpboot/b56933/t4240rdb/sdk-v1.6/
+
