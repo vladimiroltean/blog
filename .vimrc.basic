@@ -33,18 +33,24 @@ set term=xterm-256color
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set number
 "set relativenumber
-"set smarttab
-set shiftwidth=8 softtabstop=8
+
+" Indent with tabs, align with spaces
 set tabstop=8
+set shiftwidth=8
+set softtabstop=0
+"set smarttab
 set noexpandtab
-"set expandtab
+set preserveindent
+set copyindent
 set autoindent
 "set smartindent
 "set cindent
-" Line break
-set lbr
-set tw=80
-"set wrap
+
+"set textwidth=80
+set wrap
+"set list breaks this
+set linebreak
+
 " Colorscheme
 " Use "bluegreen" for now, previously was using "molokai"
 colorscheme bluegreen
