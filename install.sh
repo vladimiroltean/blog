@@ -5,12 +5,8 @@ mkdir -p ~/.dotfiles.old
 mv ~/.bashrc.after        ~/.dotfiles.old
 mv ~/.bash_aliases        ~/.dotfiles.old
 mv ~/.gvimrc.after        ~/.dotfiles.old
-mv ~/.vimrc.after         ~/.dotfiles.old
-mv ~/.vimrc.autocomplete  ~/.dotfiles.old
-mv ~/.vimrc.basic         ~/.dotfiles.old
+mv ~/.vimrc               ~/.dotfiles.old
 mv ~/.vimrc.keymaps       ~/.dotfiles.old
-mv ~/.vimrc.syntastic     ~/.dotfiles.old
-mv ~/.vimrc.tags          ~/.dotfiles.old
 mv ~/.vimpagerrc          ~/.dotfiles.old
 mv ~/.tmux.conf           ~/.dotfiles.old
 mv ~/.tmux.compat.conf    ~/.dotfiles.old
@@ -22,12 +18,8 @@ mv ~/.ssh                 ~/.ssh.old
 cp ./.bashrc.after        ~
 cp ./.bash_aliases        ~
 cp ./.gvimrc.after        ~
-cp ./.vimrc.after         ~
-cp ./.vimrc.autocomplete  ~
-cp ./.vimrc.basic         ~
+cp ./.vimrc               ~
 cp ./.vimrc.keymaps       ~
-cp ./.vimrc.syntastic     ~
-cp ./.vimrc.tags          ~
 cp ./.vimpagerrc          ~
 cp ./.tmux.conf           ~
 cp ./.tmux.compat.conf    ~

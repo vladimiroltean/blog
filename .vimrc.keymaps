@@ -1,15 +1,59 @@
-" Shift-i to enable hidden files in NerdTREE
-" \n to toggle NerdTREE
-" \rt to toggle Tagbar
+
+
+" bind function to a hotkey
+map <F8> :call OpenCurrentLine() <CR><CR>
+
+"gundo.vim
+nmap     <F5> :GundoToggle<CR>
+imap     <F5> <ESC>:GundoToggle<CR>
+
 
 nnoremap <F3> :nohlsearch<CR>
 nnoremap <F4> :Ack <cword><CR>
-nnoremap <F5> :GundoToggle<CR>
 nnoremap <F6> :NeoCompleteToggle<CR>
+
+" Shift-i to enable hidden files in NerdTREE
+map <leader>n :NERDTreeToggle<CR> :NERDTreeMirror<CR>
+
+"kwbd.vim
+"1:call janus#add_mapping('kwbd', 'nmap', '<C-W>!', '<Plug>Kwbd')
+
+map <Leader>rt :TagbarToggle<CR>
+
+"NERD_commenter.vim
+"3:  call janus#add_mapping('nerdcommenter', 'map', '<D-/>', '<plug>NERDCommenterToggle<CR>')
+"4:  call janus#add_mapping('nerdcommenter', 'imap', '<D-/>', '<Esc><plug>NERDCommenterToggle<CR>i')
+"6:  call janus#add_mapping('nerdcommenter', 'map', '<leader>/', '<plug>NERDCommenterToggle<CR>')
+
+"zoomwin.vim
+"2:call janus#add_mapping('zoomwin', 'map', '<leader>zw', ':ZoomWin<CR>')
+
+"unimpaired.vim
+nmap <C-Up>   [e
+nmap <C-Down> ]e
+vmap <C-Up>   [egv
+vmap <C-Down> ]egv
+
+"ack.vim
+map <leader>f :Ack<space>
+map <C-F>     :Ack<space>
+
+
+"fugitive.vim
+nmap <leader>gb :Gblame<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>gl :Glog<CR>
+nmap <leader>gc :Gcommit<CR>
+nmap <leader>gp :Git push<CR>
+
+"narrowregion.vim
+"5:  call janus#add_mapping('narrowregion', 'map', '<leader>rn', ':NarrowRegion<CR>')
+
 
 
 " For tmux compatibility
-map <Esc>[B <Down>
+map <Esc><C-a> <Down>
 
 
 if has("vim-ctrlp-tjump")
@@ -17,24 +61,14 @@ if has("vim-ctrlp-tjump")
 	vnoremap <c-[> :CtrlPtjumpVisual<cr>
 endif
 
-" Downloaded from
-" github.com/gotbletu/shownotes/blob/master/mlocate_vdiscover_vim_locate.txt
-
-" credits
-" http://vim.wikia.com/wiki/Open_a_web-browser_with_the_URL_in_the_current_line
-" section 41.6 using functions http://vimdoc.sourceforge.net/htmldoc/usr_41.html
-" devnull https://code.google.com/p/vimwiki/issues/detail?id=401
-" put qoutes around line http://stackoverflow.com/a/3218805
-" bypass pressing Enter to continue with extra <CR> http://stackoverflow.com/a/890831
-
-function! OpenCurrentLine ()
-  " grab current line
-  let line = getline (".")
-  " add qoutes around the current line to avoid spaces/symbols issues
-  let line = substitute(line, '^\(.*\)$', '"\1"', "g")
-  " open with default system app, no messy output msg
-  exec "!xdg-open" line '>&/dev/null &'
-endfunction
-  "bind function to a hotkey
-map <F8> :call OpenCurrentLine() <CR><CR>
-
+" Ctags
+" Shortcuts: ^]  (go to tag)
+"            ^t  (go back)
+"            g^] (list tags)
+"            :tn (go to next tag)
+"            :tp (go to previous tag)
+"            @:  (execute last command)
+"            :tselect <tag_name> or
+"            :!rgrep <tag_name> . (search for <tag_name>)
+"            Ctrl-P (plugin for fuzzy search)
+map [I    :cscope find c <C-r><C-w><CR>

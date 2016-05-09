@@ -51,6 +51,15 @@ Host reverse
 	Compression yes
 	ForwardX11 yes
 	ForwardX11Trusted yes
+Host reverse-work
+	RemoteForward 60000 localhost:22
+	HostName vacaintreporci.go.ro
+	Port 3928
+	User alarm
+	ForwardX11 yes
+	Compression yes
+	TCPKeepAlive yes
+	ServerAliveInterval 60
 Host fep
 	User ioan.oltean
 	HostName fep.grid.pub.ro
