@@ -60,6 +60,15 @@ Host reverse-work
 	Compression yes
 	TCPKeepAlive yes
 	ServerAliveInterval 60
+Host reverse-filemaker
+	RemoteForward 60002 tx32app66v:80
+	HostName vacaintreporci.go.ro
+	Port 3928
+	User alarm
+	ForwardX11 no
+	Compression yes
+	TCPKeepAlive yes
+	ServerAliveInterval 60
 Host fep
 	User ioan.oltean
 	HostName fep.grid.pub.ro

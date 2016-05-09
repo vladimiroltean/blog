@@ -6,6 +6,7 @@ mv ~/.bashrc.after        ~/.dotfiles.old
 mv ~/.bash_aliases        ~/.dotfiles.old
 mv ~/.gvimrc.after        ~/.dotfiles.old
 mv ~/.vimrc               ~/.dotfiles.old
+mv ~/.vimrc.plug          ~/.dotfiles.old
 mv ~/.vimrc.keymaps       ~/.dotfiles.old
 mv ~/.vimpagerrc          ~/.dotfiles.old
 mv ~/.tmux.conf           ~/.dotfiles.old
@@ -19,6 +20,7 @@ cp ./.bashrc.after        ~
 cp ./.bash_aliases        ~
 cp ./.gvimrc.after        ~
 cp ./.vimrc               ~
+cp ./.vimrc.plug          ~
 cp ./.vimrc.keymaps       ~
 cp ./.vimpagerrc          ~
 cp ./.tmux.conf           ~
