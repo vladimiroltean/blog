@@ -1,9 +1,0 @@
-let g:syntastic_check_on_open = 0
-let g:syntastic_c_check_header = 1
-let g:syntastic_c_no_default_include_dirs = 0
-let g:syntastic_c_config_file = '.syntastic_c_config'
-
-let g:syntastic_verilog_compiler = 'verilator'
-let g:syntastic_verilog_config_file = '.syntastic_verilog_config'
-
-"let g:syntastic_c_compiler = 'avrgcc'

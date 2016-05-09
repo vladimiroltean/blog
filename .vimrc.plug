@@ -1,0 +1,24 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'https://github.com/tpope/vim-dispatch'
+Plug 'tpope/vim-unimpaired'
+Plug 'https://github.com/vim-scripts/Colour-Sampler-Pack'
+Plug 'https://github.com/bronson/vim-trailing-whitespace'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'https://github.com/mileszs/ack.vim'
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'https://github.com/easymotion/vim-easymotion'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
+Plug 'Valloric/YouCompleteMe'
+Plug 'vim-scripts/Gundo'
+Plug 'majutsushi/tagbar'
+Plug 'https://github.com/godlygeek/tabular.git'
+
+" Add plugins to &runtimepath
+call plug#end()
+
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
+                        \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']

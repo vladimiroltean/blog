@@ -9,6 +9,7 @@ cp ~/.tmux.mouse.conf    .
 cp ~/.tmux.visual.conf   .
 cp ~/.gvimrc.after       .
 cp ~/.vimrc              .
+cp ~/.vimrc.plug         .
 cp ~/.vimrc.keymaps      .
 cp ~/.vimpagerrc         .
 cp ~/.ssh/config .ssh_config
