@@ -1,6 +1,5 @@
 #/bin/bash
 
-INITDIR=$PWD
 DOTFILES=$PWD/dotfiles
 
 # For each dotfile in our folder, retrieve the currently running version from the system instead.
