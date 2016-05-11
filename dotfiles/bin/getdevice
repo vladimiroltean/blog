@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ls /dev/* > /tmp/.log1
+echo Add/Remove device and then press any key
+read
+ls /dev/* > /tmp/.log2
+diff /tmp/.log1 /tmp/.log2
+rm -f /tmp/.log1 /tmp/.log2

@@ -22,9 +22,10 @@ set undofile
 set autoread
 " Search options
 set incsearch
+set ignorecase
 set smartcase
 set hlsearch
-set nowrapscan
+set wrapscan
 set mousemodel=extend
 " scroll offset from the cursor to the top and bottom
 set scrolloff=7
@@ -46,6 +47,12 @@ set guioptions+=a
 " For better tmux compatibility (mouse scrolling)
 set mouse=a
 set term=xterm-256color
+" For mouse clicks beyond column 220
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
 
 set tags=./tags.headers;/,./tags;/,tags;/;
 
@@ -90,27 +97,38 @@ highlight Pmenu ctermbg=238 ctermfg=cyan gui=bold
 set wildmenu
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Custom functions
+" Taken from Janus
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("statusline") && !&cp
+  set laststatus=2  " always show the status bar
 
-" Downloaded from
-" github.com/gotbletu/shownotes/blob/master/mlocate_vdiscover_vim_locate.txt
+  " Start the status line
+  set statusline=%f\ %m\ %r
+  set statusline+=FileType\ %y\ Line\ %5l\ of\ %5L\ [%3p%%]\ Column\ %3v
+  set statusline+=\ %{fugitive#statusline()}
+endif
 
-" credits
-" http://vim.wikia.com/wiki/Open_a_web-browser_with_the_URL_in_the_current_line
-" section 41.6 using functions http://vimdoc.sourceforge.net/htmldoc/usr_41.html
-" devnull https://code.google.com/p/vimwiki/issues/detail?id=401
-" put qoutes around line http://stackoverflow.com/a/3218805
-" bypass pressing Enter to continue with extra <CR> http://stackoverflow.com/a/890831
 
-function! OpenCurrentLine ()
-  " grab current line
-  let line = getline (".")
-  " add qoutes around the current line to avoid spaces/symbols issues
-  let line = substitute(line, '^\(.*\)$', '"\1"', "g")
-  " open with default system app, no messy output msg
-  exec "!xdg-open" line '>&/dev/null &'
-endfunction
+filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
+
+if has("autocmd")
+  " In Makefiles, use real tabs, not tabs expanded to spaces
+  au FileType make setlocal noexpandtab
+
+  " Make sure all markdown files have the correct filetype set and setup wrapping
+  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
+  if !exists("g:disable_markdown_autostyle")
+    au FileType markdown setlocal wrap linebreak textwidth=72 nolist
+  endif
+
+  " make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
+  au FileType python setlocal tabstop=4 shiftwidth=4
+
+  " Remember last location in file, but not for commit messages.
+  " see :help last-position-jump
+  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g`\"" | endif
+endif
 
 
 
@@ -166,4 +184,30 @@ augroup AuNERDTreeCmd
 	autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 	autocmd AuNERDTreeCmd FocusGained * echom 'FocusGained' "call s:UpdateNERDTree()
 augroup END
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Custom functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Downloaded from
+" github.com/gotbletu/shownotes/blob/master/mlocate_vdiscover_vim_locate.txt
+
+" credits
+" http://vim.wikia.com/wiki/Open_a_web-browser_with_the_URL_in_the_current_line
+" section 41.6 using functions http://vimdoc.sourceforge.net/htmldoc/usr_41.html
+" devnull https://code.google.com/p/vimwiki/issues/detail?id=401
+" put qoutes around line http://stackoverflow.com/a/3218805
+" bypass pressing Enter to continue with extra <CR> http://stackoverflow.com/a/890831
+
+function! OpenCurrentLine ()
+  " grab current line
+  let line = getline (".")
+  " add qoutes around the current line to avoid spaces/symbols issues
+  let line = substitute(line, '^\(.*\)$', '"\1"', "g")
+  " open with default system app, no messy output msg
+  exec "!xdg-open" line '>&/dev/null &'
+endfunction
+
+
 

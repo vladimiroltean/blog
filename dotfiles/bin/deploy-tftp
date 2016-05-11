@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR=/srv/tftpboot/t1024rdb/sdk-v1.9/
+
+mkdir -p $DIR
+cp $@ $DIR
+

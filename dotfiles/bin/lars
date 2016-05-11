@@ -1,0 +1,11 @@
+#!/bin/bash
+
+lars list boards | grep -i t1024
+lars reserve aida
+lars reset aida
+lars connect aida
+# Telnet session opens - close with ctrl-] and q
+# Move to bank 0
+cpld reset # inside U-boot
+# ctrl-] + 1
+lars release aida

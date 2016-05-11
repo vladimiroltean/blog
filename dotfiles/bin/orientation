@@ -1,0 +1,12 @@
+#!/bin/bash
+
+STATE=`gsettings get org.gnome.settings-daemon.plugins.orientation active`
+if [ $STATE = "true" ]; then
+	STATE="false"
+else
+	STATE="true"
+fi
+gsettings set org.gnome.settings-daemon.plugins.orientation active $STATE
+
+echo $STATE >> /home/aldi/bin/orientation-log
+
