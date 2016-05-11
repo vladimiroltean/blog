@@ -1,3 +1,0 @@
-#!/bin/bash
-
-fmc -c /usr/etc/usdpaa_config_p4_serdes_0xe.xml -p /usr/etc/usdpaa_policy_hash_ipv4.xml -a

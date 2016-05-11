@@ -1,6 +1,0 @@
-#!/bin/bash
-
-DIR=/srv/nfsroot/t1024rdb/sdk-v1.9/
-
-mkdir -p $DIR
-cp $@ $DIR

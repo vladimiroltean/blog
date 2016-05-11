@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Remove SD card
-umount /mnt/
-dmsetup remove crypt1
-

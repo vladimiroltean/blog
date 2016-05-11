@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# taken from here:
-# https://www.howtoforge.com/sharing-terminal-sessions-with-tmux-and-screen
-
-tmux -S /tmp/shareds attach -t shared

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ssh r /jffs/scripts/wol.sh

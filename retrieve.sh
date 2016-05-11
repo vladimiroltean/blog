@@ -9,6 +9,6 @@ cd $DOTFILES || echo "Must have dotfiles folder at $DOTFILES!"
 echo "====== Retrieving dotfiles from running system."
 for dotfile in `find . -type f`; do
 	if [ -e $HOME/$dotfile ]; then
-		cp -v $HOME/$dotfile $DOTFILES
+		cp -v $HOME/$dotfile $DOTFILES/$dotfile
 	fi
 done

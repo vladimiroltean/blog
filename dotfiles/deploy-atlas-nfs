@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cp $@ /srv/nfsroot/b56933/t4240rdb/sdk-v1.6/
-
