@@ -22,3 +22,5 @@ call plug#end()
 
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
                         \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
+let g:ycm_global_ycm_extra_conf = '~/.vim/_ycm_extra_conf.py'
+

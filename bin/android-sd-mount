@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Mount encrypted SD card
+SIZE=`blockdev --getsize /dev/sdb2`
+dmsetup create crypt1 --table "0 $SIZE crypt \
+    aes-cbc-essiv:sha256 07ed4ca0d390b6f4f597dafe15db0733 \
+    0 /dev/sdb2 0"
+mount -t ext4 /dev/mapper/crypt1 /mnt/
+
+echo "Go to the Linux Deploy folder:/mnt/user/0/ru.meefik.linuxdeploy/files/linux/"
+echo "Go to the user-visible SD card folder: /mnt/media/0"
+

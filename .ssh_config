@@ -51,6 +51,14 @@ Host reverse
 	Compression yes
 	ForwardX11 yes
 	ForwardX11Trusted yes
+Host work
+  Port 60000
+  HostName alarmpi
+  User b56933
+  ForwardX11 yes
+  Compression yes
+  TCPKeepAlive yes
+  ServerAliveInterval 60
 Host reverse-work
 	RemoteForward 60000 localhost:22
 	HostName vacaintreporci.go.ro

@@ -1,3 +1,6 @@
+" Break compatibility with vi
+set nocp
+
 source ~/.vimrc.plug
 source ~/.vimrc.keymaps
 
@@ -5,12 +8,24 @@ source ~/.vimrc.keymaps
 " Basic stuff to make the thing usable, shouldn't need to edit these
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Create backup folder if it doesn't exist
-silent !mkdir ~/.vim/_backup > /dev/null 2>&1
-set backupdir=~/.vim/_backup/
-" Break compatibility with vi
-set nocp
+let s:vim_cache = expand('$HOME/.vim/_backup')
+if filewritable(s:vim_cache) == 0 && exists("*mkdir")
+    call mkdir(s:vim_cache, "p", 0700)
+endif
+
+let &backupdir=s:vim_cache
+let &undodir=s:vim_cache
+
+" Maintain persistent undo history of files
+set undofile
 " For files edited outside of vim
 set autoread
+" Search options
+set incsearch
+set smartcase
+set hlsearch
+set nowrapscan
+set mousemodel=extend
 " scroll offset from the cursor to the top and bottom
 set scrolloff=7
 set ruler
@@ -62,7 +77,7 @@ set linebreak
 " Use "bluegreen" for now, previously was using "molokai"
 colorscheme bluegreen
 " Repair colors for completion menu
-"highlight Pmenu ctermbg=238 ctermfg=cyan gui=bold
+highlight Pmenu ctermbg=238 ctermfg=cyan gui=bold
 
 " Make vim use nice colors
 "set background = "dark"
@@ -96,3 +111,59 @@ function! OpenCurrentLine ()
   " open with default system app, no messy output msg
   exec "!xdg-open" line '>&/dev/null &'
 endfunction
+
+
+
+" If the parameter is a directory, cd into it
+function s:CdIfDirectory(directory)
+  let explicitDirectory = isdirectory(a:directory)
+  let directory = explicitDirectory || empty(a:directory)
+
+  if explicitDirectory
+    exe "cd " . fnameescape(a:directory)
+  endif
+
+  " Allows reading from stdin
+  " ex: git diff | mvim -R -
+  if strlen(a:directory) == 0
+    return
+  endif
+
+  if directory
+    NERDTree
+    wincmd p
+    bd
+  endif
+
+  if explicitDirectory
+    wincmd p
+  endif
+endfunction
+
+" NERDTree utility function
+function s:UpdateNERDTree(...)
+  let stay = 0
+
+  if(exists("a:1"))
+    let stay = a:1
+  end
+
+  if exists("t:NERDTreeBufName")
+    let nr = bufwinnr(t:NERDTreeBufName)
+    if nr != -1
+      exe nr . "wincmd w"
+      exe substitute(mapcheck("R"), "<CR>", "", "")
+      if !stay
+        wincmd p
+      end
+    endif
+  endif
+endfunction
+
+
+
+augroup AuNERDTreeCmd
+	autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
+	autocmd AuNERDTreeCmd FocusGained * echom 'FocusGained' "call s:UpdateNERDTree()
+augroup END
+
