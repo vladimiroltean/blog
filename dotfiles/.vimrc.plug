@@ -26,6 +26,8 @@ Plug 'https://github.com/godlygeek/tabular.git'
 " Context autocomplete engine
 Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+" Syntax-aware % matching
+Plug 'tmhedberg/matchit'
 
 " Add plugins to &runtimepath
 call plug#end()

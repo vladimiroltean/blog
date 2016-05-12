@@ -54,6 +54,7 @@ else
     set ttymouse=xterm2
 end
 
+"set foldmethod=syntax
 set tags=./tags.headers;/,./tags;/,tags;/;
 
 
