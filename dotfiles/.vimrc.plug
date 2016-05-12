@@ -1,21 +1,31 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'https://github.com/tpope/vim-dispatch'
+" Provides C-Up and C-Down maps for swapping lines
 Plug 'tpope/vim-unimpaired'
 Plug 'https://github.com/vim-scripts/Colour-Sampler-Pack'
 Plug 'https://github.com/bronson/vim-trailing-whitespace'
 Plug 'scrooloose/nerdtree'
+" Handy mappings for <Leader>ci etc
 Plug 'scrooloose/nerdcommenter'
+" Handy search with <C>-f
 Plug 'https://github.com/mileszs/ack.vim'
+" Fuzzy file search
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+" Accelerate motions with <Leader><Leader>w etc
 Plug 'https://github.com/easymotion/vim-easymotion'
+" Provides the handy info in statusbar and left of buffer for modified files
 Plug 'airblade/vim-gitgutter'
+" Provides mappings for git checkout, branch etc
 Plug 'tpope/vim-fugitive'
+" Provides handy commands like :SudoWrite etc
 Plug 'tpope/vim-eunuch'
-Plug 'Valloric/YouCompleteMe'
 Plug 'vim-scripts/Gundo'
 Plug 'majutsushi/tagbar'
 Plug 'https://github.com/godlygeek/tabular.git'
+" Context autocomplete engine
+Plug 'Valloric/YouCompleteMe'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -27,7 +37,7 @@ let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
 let g:ycm_global_ycm_extra_conf = '~/.vim/_ycm_extra_conf.py'
 
 
-
+" NERDTree
 
 " If the parameter is a directory, cd into it
 function s:CdIfDirectory(directory)
@@ -80,7 +90,6 @@ let NERDTreeShowHidden = 1
 
 augroup AuNERDTreeCmd
 	autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
-	"autocmd FileType nerdtree call s:OpenNERDTreeOnLeft()
 	autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
 	" close vim if the only window left open is a NERDTree?
 	autocmd AuNERDTreeCmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
