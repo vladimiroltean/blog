@@ -20,6 +20,7 @@ export PAGER=vimpager
 export EDITOR=vim
 
 zstyle ':completion:*' menu select
+bindkey '^[[Z' reverse-menu-complete
 
 bindkey -v
 bindkey '^P' up-history
