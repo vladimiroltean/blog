@@ -1,6 +1,5 @@
 call plug#begin('~/.vim/plugged')
 
-"if exists('g:vimpager.enabled')
 Plug 'https://github.com/tpope/vim-dispatch'
 " Provides C-Up and C-Down maps for swapping lines
 Plug 'tpope/vim-unimpaired'
@@ -96,10 +95,17 @@ endfunction
 let NERDTreeHijackNetrw = 0
 let NERDTreeShowHidden = 1
 
+function! rc:NERDTreeIsOpen()
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
 augroup AuNERDTreeCmd
+	" Open NERDTree on left-hand side if requested to open a directory
 	autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 	autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
 	" close vim if the only window left open is a NERDTree?
-	autocmd AuNERDTreeCmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	autocmd AuNERDTreeCmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	" Highlight a file in NERDTree when opening it in a buffer
+	autocmd AuNERDTreeCmd BufEnter * if &modifiable && rc:NERDTreeIsOpen() | NERDTreeFind | wincmd p | endif
 augroup END
 
