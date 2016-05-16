@@ -1,5 +1,5 @@
-" Break compatibility with vi
 set nocp
+" Break compatibility with vi
 
 source ~/.vimrc.plug
 source ~/.vimrc.keymaps

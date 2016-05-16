@@ -1,33 +1,39 @@
 call plug#begin('~/.vim/plugged')
 
+"if exists('g:vimpager.enabled')
 Plug 'https://github.com/tpope/vim-dispatch'
 " Provides C-Up and C-Down maps for swapping lines
 Plug 'tpope/vim-unimpaired'
 Plug 'https://github.com/vim-scripts/Colour-Sampler-Pack'
-Plug 'https://github.com/bronson/vim-trailing-whitespace'
-Plug 'scrooloose/nerdtree'
+Plug 'https://github.com/bronson/vim-trailing-whitespace', { 'for': ['c', 'cpp', 'vim'] }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
 " Handy mappings for <Leader>ci etc
 Plug 'scrooloose/nerdcommenter'
 " Handy search with <C>-f
-Plug 'https://github.com/mileszs/ack.vim'
+Plug 'https://github.com/mileszs/ack.vim', { 'on': 'Ack' }
 " Fuzzy file search
-Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'https://github.com/ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 " Accelerate motions with <Leader><Leader>w etc
 Plug 'https://github.com/easymotion/vim-easymotion'
 " Provides the handy info in statusbar and left of buffer for modified files
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter' ", { 'on': 'GitGutterToggle' }
 " Provides mappings for git checkout, branch etc
 Plug 'tpope/vim-fugitive'
 " Provides handy commands like :SudoWrite etc
 Plug 'tpope/vim-eunuch'
-Plug 'vim-scripts/Gundo'
-Plug 'majutsushi/tagbar'
-Plug 'https://github.com/godlygeek/tabular.git'
+" Easy searching through Vim change list
+Plug 'vim-scripts/Gundo', { 'on': 'GundoToggle' }
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+" Might get replaced by junegunn/vim-easy-align
+Plug 'https://github.com/godlygeek/tabular.git', { 'on': 'Tabularize' }
 " Context autocomplete engine
-Plug 'Valloric/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'Valloric/YouCompleteMe', { 'on': 'YcmCompleter' }
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
 " Syntax-aware % matching
 Plug 'tmhedberg/matchit'
+Plug 'drn/zoomwin-vim', { 'on': 'ZoomWin' }
+" For vimpager compatibility with git colors
+Plug 'https://github.com/vim-scripts/AnsiEsc.vim'
 
 " Add plugins to &runtimepath
 call plug#end()

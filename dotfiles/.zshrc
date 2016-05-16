@@ -33,8 +33,6 @@ bindkey '^r' history-incremental-search-backward
 function zle-line-init zle-keymap-select {
     VICMD_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
     VIINS_PROMPT="%{$fg_bold[yellow]%} [% INSERT]%  %{$reset_color%}"
-
-    #VIM_PROMPT="hello"
     RPS1="${${KEYMAP/vicmd/$VICMD_PROMPT}/(main|viins)/$VIINS_PROMPT} $EPS1"
     zle reset-prompt
 }
@@ -42,6 +40,14 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
+
+if [ -f ~/build/bin ]; then
+	export PATH=$HOME/build/bin:$PATH
+fi
+
+if [ -f ~/bin ]; then
+	export PATH=$HOME/bin:$PATH
+fi
 
 if [ -f ~/.bash_aliases ]; then
 	source ~/.bash_aliases

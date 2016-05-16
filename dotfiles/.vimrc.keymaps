@@ -1,10 +1,10 @@
 
 " Taken from Janus
 
-" upper/lower word
+" upper/lowercase word
 nmap <leader>u mQviwU`Q
 nmap <leader>l mQviwu`Q
-" upper/lower first char of word
+" upper/lowercase first char of word
 nmap <leader>U mQgewvU`Q
 nmap <leader>L mQgewvu`Q
 " cd to the directory containing the file in the buffer
@@ -27,30 +27,31 @@ nmap <leader>hs :set hlsearch! hlsearch?<CR>
 " bind function to a hotkey
 map <F8> :call OpenCurrentLine() <CR><CR>
 
-"gundo.vim
-nmap     <F5> :GundoToggle<CR>
-imap     <F5> <ESC>:GundoToggle<CR>
+" gundo.vim - easy navigation of Change list
+nmap <F5> :GundoToggle<CR>
+imap <F5> <ESC>:GundoToggle<CR>
 
+" Navigation of jump list (native Vim shortcuts):
+" See http://usevim.com/2013/02/15/vim-101-jumps
+" <C-i> jump forward
+" <C-o> jump backward
+" :jumps
 
 nnoremap <F3> :nohlsearch<CR>
 nnoremap <F4> :Ack <cword><CR>
 nnoremap <F6> :NeoCompleteToggle<CR>
 
-" Shift-i to enable hidden files in NerdTREE
 map <leader>n :NERDTreeToggle<CR> :NERDTreeMirror<CR>
-
-"kwbd.vim
-"1:call janus#add_mapping('kwbd', 'nmap', '<C-W>!', '<Plug>Kwbd')
+" Shift-i to toggle hidden files in NerdTREE
 
 map <Leader>rt :TagbarToggle<CR>
 
-"NERD_commenter.vim
-"3:  call janus#add_mapping('nerdcommenter', 'map', '<D-/>', '<plug>NERDCommenterToggle<CR>')
-"4:  call janus#add_mapping('nerdcommenter', 'imap', '<D-/>', '<Esc><plug>NERDCommenterToggle<CR>i')
-"6:  call janus#add_mapping('nerdcommenter', 'map', '<leader>/', '<plug>NERDCommenterToggle<CR>')
-
 "zoomwin.vim
-"2:call janus#add_mapping('zoomwin', 'map', '<leader>zw', ':ZoomWin<CR>')
+map <C-w>z :ZoomWin<CR>
+" Other C-w native Vim shortcuts
+" <C-w>s Horizontal window split
+" <C-w>v Vertical window split
+" <C-w>= Resize all windows equally
 
 "unimpaired.vim
 nmap <C-Up>   [e
@@ -59,8 +60,7 @@ vmap <C-Up>   [egv
 vmap <C-Down> ]egv
 
 "ack.vim
-map <leader>f :Ack<space>
-map <C-F>     :Ack<space>
+map <C-F> :Ack<space>
 
 
 "fugitive.vim
@@ -71,28 +71,24 @@ nmap <leader>gl :Glog<CR>
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>gp :Git push<CR>
 
-"narrowregion.vim
-"5:  call janus#add_mapping('narrowregion', 'map', '<leader>rn', ':NarrowRegion<CR>')
-
-
 
 " For tmux compatibility
 map <Esc><C-a> <Down>
 
-
+" CtrlP-Tjump is a fuzzy-search alternative to Ctags
+" (may be faster, but more inaccurate)
 if has("vim-ctrlp-tjump")
 	nnoremap <c-[> :CtrlPtjump<cr>
 	vnoremap <c-[> :CtrlPtjumpVisual<cr>
 endif
 
-" Ctags
-" Shortcuts: ^]  (go to tag)
-"            ^t  (go back)
-"            g^] (list tags)
-"            :tn (go to next tag)
-"            :tp (go to previous tag)
-"            @:  (execute last command)
-"            :tselect <tag_name> or
-"            :!rgrep <tag_name> . (search for <tag_name>)
-"            Ctrl-P (plugin for fuzzy search)
-map [I    :cscope find c <C-r><C-w><CR>
+" Ctags Shortcuts:
+" <C-]>  (go to tag)
+" <C-t>  (go back)
+" g<C-]> (list tags)
+" :tn (go to next tag)
+" :tp (go to previous tag)
+" @:  (execute last command)
+" :tselect <tag_name>
+
+map <C-I> :cscope find c <C-r><C-w><CR>
