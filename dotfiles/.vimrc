@@ -105,7 +105,7 @@ if has("statusline") && !&cp
 
   " Start the status line
   set statusline=%f\ %m\ %r
-  set statusline+=FileType\ %y\ Line\ %5l\ of\ %5L\ [%3p%%]\ Column\ %3v
+  set statusline+=FileType\ %y\ Line\ %3l\ of\ %L\ [%3p%%]\ Col%3v
   set statusline+=\ %{fugitive#statusline()}
 endif
 
