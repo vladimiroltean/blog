@@ -12,7 +12,7 @@ Plug 'scrooloose/nerdcommenter'
 " Handy search with <C>-f
 Plug 'https://github.com/mileszs/ack.vim', { 'on': 'Ack' }
 " Fuzzy file search
-Plug 'https://github.com/ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
+Plug 'https://github.com/ctrlpvim/ctrlp.vim' ", { 'on': 'CtrlP' }
 " Accelerate motions with <Leader><Leader>w etc
 Plug 'https://github.com/easymotion/vim-easymotion'
 " Provides the handy info in statusbar and left of buffer for modified files

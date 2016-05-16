@@ -41,6 +41,7 @@ nnoremap <F3> :nohlsearch<CR>
 nnoremap <F4> :Ack <cword><CR>
 nnoremap <F6> :NeoCompleteToggle<CR>
 
+map <leader>r :NERDTreeFind<CR>
 map <leader>n :NERDTreeToggle<CR> :NERDTreeMirror<CR>
 " Shift-i to toggle hidden files in NerdTREE
 
