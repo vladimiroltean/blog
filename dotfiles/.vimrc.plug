@@ -22,7 +22,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 " Easy searching through Vim change list
 Plug 'vim-scripts/Gundo', { 'on': 'GundoToggle' }
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
 " Might get replaced by junegunn/vim-easy-align
 Plug 'https://github.com/godlygeek/tabular.git', { 'on': 'Tabularize' }
 " Context autocomplete engine
@@ -99,10 +99,10 @@ function! rc:NERDTreeIsOpen()
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-function! rc:NERDTreeSync()
-	if &modifiable && rc:NERDTreeIsOpen() && strlen(expand('%')) > 0 && !&diff
+function! rc:NERDTreeSync(buffername)
+	if &modifiable && rc:NERDTreeIsOpen() && strlen(a:buffername) > 0 && !&diff
 		NERDTreeFind
-		wincmd p
+		wincmd l
 	endif
 endfunction
 
@@ -113,6 +113,6 @@ augroup AuNERDTreeCmd
 	" close vim if the only window left open is a NERDTree?
 	autocmd AuNERDTreeCmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 	" Highlight a file in NERDTree when opening it in a buffer
-	autocmd AuNERDTreeCmd BufEnter * call rc:NERDTreeSync()
+	autocmd AuNERDTreeCmd BufEnter * call rc:NERDTreeSync(expand("<amatch>"))
 augroup END
 
