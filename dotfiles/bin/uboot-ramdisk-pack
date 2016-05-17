@@ -1,0 +1,7 @@
+#!/bin/bash
+
+FILESYSTEM_FILENAME=$1
+ARCHIVE_FILENAME=$FILESYSTEM_FILENAME".gz"
+IMAGE_FILENAME=$ARCHIVE_FILENAME".u-boot"
+gzip -9 $FILESYSTEM_FILENAME --stdout > $ARCHIVE_FILENAME
+mkimage -A powerpc -O linux -T ramdisk -a 0x0 -n "Custom made ramdisk" -d $ARCHIVE_FILENAME $IMAGE_FILENAME
