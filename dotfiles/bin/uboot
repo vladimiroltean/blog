@@ -24,8 +24,15 @@ setenv b56933_nfsbootm    'setenv bootargs root=/dev/nfs rw nfsroot=$serverip:$r
 setenv b56933_myboot      'run b56933_myconfig; run b56933_nfsbootm; tftp $loadaddr $bootfile;tftp $fdtaddr $fdtfile;bootm $loadaddr - $fdtaddr'
 run b56933_myboot
 
-
+# T1024RDB SDK 2.0 USDPAA
 setenv netdev eth0; setenv serverip 192.168.1.8; setenv bootfile /srv/tftpboot/t1024rdb/sdk-v2.0/uImage; setenv fdtfile /srv/tftpboot/t1024rdb/sdk-v2.0/uImage-t1024rdb-usdpaa.dtb; setenv rootpath /srv/nfsroot/t1024rdb/sdk-v2.0/fsl-image-core-t1024rdb
 setenv othbootargs "isolcpus=1 usdpaa_mem=256M bportals=s0 qportals=s0 fsl_fm_max_frm=9000"
 setenv bootargs "root=/dev/nfs rw nfsroot=$serverip:$rootpath,vers=3 ip=$ipaddr:$serverip:$gatewayip:$netmask:$hostname:$netdev:off console=$consoledev,$baudrate $othbootargs"
 tftp $loadaddr $bootfile; tftp $fdtaddr $fdtfile; bootm $loadaddr - $fdtaddr
+
+# T4240RDB SDK 2.0
+setenv netdev eth0; setenv serverip 192.168.1.8; setenv bootfile /srv/tftpboot/t4240rdb/sdk-v2.0/uImage; setenv fdtfile /srv/tftpboot/t4240rdb/sdk-v2.0/uImage-t4240rdb.dtb; setenv rootpath /srv/nfsroot/t4240rdb/sdk-v2.0/
+setenv othbootargs "isolcpus=1 usdpaa_mem=256M bportals=s0 qportals=s0 fsl_fm_max_frm=9000"
+setenv bootargs "root=/dev/nfs rw nfsroot=$serverip:$rootpath,vers=3 ip=$ipaddr:$serverip:$gatewayip:$netmask:$hostname:$netdev:off console=$consoledev,$baudrate $othbootargs"
+tftp $loadaddr $bootfile; tftp $fdtaddr $fdtfile; bootm $loadaddr - $fdtaddr
+

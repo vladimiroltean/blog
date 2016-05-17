@@ -37,7 +37,7 @@ Plug 'https://github.com/vim-scripts/AnsiEsc.vim'
 " Add plugins to &runtimepath
 call plug#end()
 
-
+autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
                         \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
@@ -99,6 +99,13 @@ function! rc:NERDTreeIsOpen()
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
+function! rc:NERDTreeSync()
+	if &modifiable && rc:NERDTreeIsOpen() && strlen(expand('%')) > 0 && !&diff
+		NERDTreeFind
+		wincmd p
+	endif
+endfunction
+
 augroup AuNERDTreeCmd
 	" Open NERDTree on left-hand side if requested to open a directory
 	autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
@@ -106,6 +113,6 @@ augroup AuNERDTreeCmd
 	" close vim if the only window left open is a NERDTree?
 	autocmd AuNERDTreeCmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 	" Highlight a file in NERDTree when opening it in a buffer
-	autocmd AuNERDTreeCmd BufEnter * if &modifiable && rc:NERDTreeIsOpen() | NERDTreeFind | wincmd p | endif
+	autocmd AuNERDTreeCmd BufEnter * call rc:NERDTreeSync()
 augroup END
 
