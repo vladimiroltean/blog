@@ -9,7 +9,7 @@ Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTree'] }
 " Handy mappings for <Leader>ci etc
 Plug 'scrooloose/nerdcommenter'
 " Handy search with <C>-f
-Plug 'https://github.com/mileszs/ack.vim', { 'on': 'Ack' }
+Plug 'rking/ag.vim', { 'on': 'Ag' }
 " Fuzzy file search
 Plug 'https://github.com/ctrlpvim/ctrlp.vim' ", { 'on': 'CtrlP' }
 " Accelerate motions with <Leader><Leader>w etc
@@ -34,7 +34,6 @@ Plug 'drn/zoomwin-vim', { 'on': 'ZoomWin' }
 " For vimpager compatibility with git colors
 Plug 'https://github.com/vim-scripts/AnsiEsc.vim'
 Plug 'https://github.com/vim-scripts/TeTrIs.vim'
-Plug 'https://github.com/vim-scripts/taglist.vim'
 
 " Add plugins to &runtimepath
 call plug#end()

@@ -1,3 +1,11 @@
+" Ctags Shortcuts:
+" <C-]>  (go to tag)
+" <C-t>  (go back)
+" g<C-]> (list tags)
+" :tn (go to next tag)
+" :tp (go to previous tag)
+" @:  (execute last command)
+" :tselect <tag_name>
 
 " Taken from Janus
 
@@ -22,27 +30,23 @@ nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 " Map the arrow keys to be based on display lines, not physical lines
 map <Down> gj
 map <Up> gk
-" Toggle hlsearch with <leader>hs
-nmap <leader>hs :set hlsearch! hlsearch?<CR>
 " bind function to a hotkey
 map <F8> :call OpenCurrentLine() <CR><CR>
 
 " gundo.vim - easy navigation of Change list
 nmap <F5> :GundoToggle<CR>
 imap <F5> <ESC>:GundoToggle<CR>
-
 " Navigation of jump list (native Vim shortcuts):
 " See http://usevim.com/2013/02/15/vim-101-jumps
 " <C-i> jump forward
 " <C-o> jump backward
 " :jumps
 
-nnoremap <F3> :nohlsearch<CR>
-nnoremap <F4> :Ack <cword><CR>
-nnoremap <F6> :NeoCompleteToggle<CR>
+nnoremap <F3>  :nohlsearch<CR>
+nnoremap <F6>  :YcmCompleter<CR>
 
-map <leader>r :NERDTreeFind<CR>
-map <leader>n :NERDTreeToggle<CR> :NERDTreeMirror<CR>
+map <leader>f  :NERDTreeFind<CR>
+map <leader>n  :NERDTreeToggle<CR> :NERDTreeMirror<CR>
 " Shift-i to toggle hidden files in NerdTREE
 
 map <Leader>rt :TagbarToggle<CR>
@@ -60,8 +64,9 @@ nmap <C-Down> ]e
 vmap <C-Up>   [egv
 vmap <C-Down> ]egv
 
-"ack.vim
-map <C-F> :Ack<space>
+" ag.vim
+nnoremap <leader>* :Ag <cword><CR>
+map <C-f> :Ag<space>
 
 
 "fugitive.vim
@@ -83,13 +88,3 @@ if has("vim-ctrlp-tjump")
 	vnoremap <c-[> :CtrlPtjumpVisual<cr>
 endif
 
-" Ctags Shortcuts:
-" <C-]>  (go to tag)
-" <C-t>  (go back)
-" g<C-]> (list tags)
-" :tn (go to next tag)
-" :tp (go to previous tag)
-" @:  (execute last command)
-" :tselect <tag_name>
-
-map <C-I> :cscope find c <C-r><C-w><CR>
