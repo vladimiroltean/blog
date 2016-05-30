@@ -56,7 +56,16 @@ end
 
 "set foldmethod=syntax
 set tags=./tags.headers;/,./tags;/,tags;/;
-
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+    if (!empty(db))
+        let path = strpart(db, 0, match(db, "/cscope.out$"))
+        set nocscopeverbose " suppress 'duplicate connection' error
+        exe "cs add " . db . " " . path
+        set cscopeverbose
+    endif
+endfunction
+au BufEnter /* call LoadCscope()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " De gustibus non disputandum
@@ -101,12 +110,27 @@ set wildmenu
 " Taken from Janus
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("statusline") && !&cp
+  hi User0 cterm=bold ctermfg=black ctermbg=white
+  hi User1 cterm=bold ctermfg=red   ctermbg=none
+  hi User2 cterm=bold ctermfg=white ctermbg=none
+  hi User3 cterm=bold ctermfg=green ctermbg=none
+  hi User4 cterm=bold ctermfg=cyan  ctermbg=none
+
   set laststatus=2  " always show the status bar
 
   " Start the status line
-  set statusline=%f\ %m\ %r
-  set statusline+=FileType\ %y\ Line\ %3l\ of\ %L\ [%3p%%]\ Col%3v
+  set statusline=
+  set statusline+=%0*                           " User0 highlight
+  set statusline+=%t\ %m\ %r                    " Tail of filename, Modified flag, Read-only
+  set statusline+=%4*                           " User4 highlight
+  set statusline+=\ %y                          " File Type
+  set statusline+=%2*                           " User2 highlight
+  set statusline+=\ Line\ %3l\ of\ %L\ [%3p%%]
+  set statusline+=\ Col%3v
+  set statusline+=%1*                           " User1 highlight
   set statusline+=\ %{fugitive#statusline()}
+  set statusline+=%0*                           " Return to User0 highlight
+
 endif
 
 

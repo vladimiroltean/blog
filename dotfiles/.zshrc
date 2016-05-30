@@ -1,11 +1,6 @@
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/aldi/.zshrc'
-
-autoload -Uz compinit
-compinit
 setopt appendhistory autocd
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 autoload -Uz colors && colors
 

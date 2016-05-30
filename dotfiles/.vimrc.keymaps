@@ -7,6 +7,8 @@
 " @:  (execute last command)
 " :tselect <tag_name>
 
+map <F5> :source ~/.vimrc<CR>
+
 " Taken from Janus
 
 " upper/lowercase word
@@ -28,14 +30,14 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 " find merge conflict markers
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 " Map the arrow keys to be based on display lines, not physical lines
-map <Down> gj
-map <Up> gk
+noremap <Down> gj
+noremap <Up> gk
 " bind function to a hotkey
 map <F8> :call OpenCurrentLine() <CR><CR>
 
 " gundo.vim - easy navigation of Change list
-nmap <F5> :GundoToggle<CR>
-imap <F5> <ESC>:GundoToggle<CR>
+nmap <leader>g :GundoToggle<CR>
+imap <leader>g <ESC>:GundoToggle<CR>
 " Navigation of jump list (native Vim shortcuts):
 " See http://usevim.com/2013/02/15/vim-101-jumps
 " <C-i> jump forward
@@ -60,13 +62,13 @@ map <C-w>z :ZoomWin<CR>
 
 "unimpaired.vim
 nmap <C-Up>   [e
-nmap <C-Down> ]e
 vmap <C-Up>   [egv
+nmap <C-Down> ]e
 vmap <C-Down> ]egv
 
 " ag.vim
 nnoremap <leader>* :Ag <cword><CR>
-map <C-f> :Ag<space>
+map <C-f> :NERDTreeClose<CR> :Ag<space>
 
 
 "fugitive.vim

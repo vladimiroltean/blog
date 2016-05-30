@@ -1,4 +1,3 @@
 #!/bin/bash
 
-export PATH=$HOME/build/bin:$PATH
 exec $SHELL
