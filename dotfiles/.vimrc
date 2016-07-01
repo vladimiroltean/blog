@@ -1,6 +1,7 @@
 set nocp
 " Break compatibility with vi
 
+set shortmess=a
 source ~/.vimrc.plug
 source ~/.vimrc.keymaps
 
