@@ -11,3 +11,5 @@ for dotfile in `find . -type f`; do
 		cp -v $HOME/$dotfile $DOTFILES/$dotfile
 	fi
 done
+
+rsync -avr $HOME/bin/ $DOTFILES/bin
