@@ -54,8 +54,8 @@ export PROMPT_DIRTRIM=3
 export PAGER='vimpager'
 export PATH+=":$HOME/.gem/ruby/2.2.0/bin"
 
-if [ -d ~/build/bin ]; then
-	export PATH=$HOME/build/bin:$PATH
+if [ -d ~/bin ]; then
+	export PATH=$HOME/bin:$PATH
 fi
 
 export USE_CCACHE=1
