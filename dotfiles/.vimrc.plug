@@ -96,12 +96,12 @@ endfunction
 let NERDTreeHijackNetrw = 0
 let NERDTreeShowHidden = 1
 
-function! rc:NERDTreeIsOpen()
+function! s:NERDTreeIsOpen()
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-function! rc:NERDTreeSync(buffername)
-	if &modifiable && rc:NERDTreeIsOpen() && strlen(a:buffername) > 0 && !&diff
+function! s:NERDTreeSync(buffername)
+	if &modifiable && s:NERDTreeIsOpen() && strlen(a:buffername) > 0 && !&diff
 		NERDTreeFind
 		wincmd l
 	endif
@@ -114,6 +114,6 @@ augroup AuNERDTreeCmd
 	" close vim if the only window left open is a NERDTree?
 	autocmd AuNERDTreeCmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 	" Highlight a file in NERDTree when opening it in a buffer
-	"autocmd AuNERDTreeCmd BufEnter * call rc:NERDTreeSync(expand("<amatch>"))
+	"autocmd AuNERDTreeCmd BufEnter * call s:NERDTreeSync(expand("<amatch>"))
 augroup END
 
