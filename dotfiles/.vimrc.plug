@@ -103,12 +103,12 @@ endfunction
 let NERDTreeHijackNetrw = 0
 let NERDTreeShowHidden = 1
 
-function! rc:NERDTreeIsOpen()
+function! NERDTreeIsOpen()
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-function! rc:NERDTreeSync(buffername)
-	if &modifiable && rc:NERDTreeIsOpen() && strlen(a:buffername) > 0 && !&diff
+function! NERDTreeSync(buffername)
+	if &modifiable && NERDTreeIsOpen() && strlen(a:buffername) > 0 && !&diff
 		NERDTreeFind
 		wincmd l
 	endif
