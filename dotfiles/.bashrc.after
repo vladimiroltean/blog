@@ -61,3 +61,6 @@ fi
 export USE_CCACHE=1
 export ANDROID_CCACHE_DIR="/opt/android-ccache"
 export ANDROID_CCACHE_SIZE="25G"
+
+
+export GIT_EDITOR=vim
