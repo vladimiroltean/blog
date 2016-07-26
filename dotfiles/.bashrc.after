@@ -51,7 +51,7 @@ fi
 shopt -s autocd
 
 export PROMPT_DIRTRIM=3
-export PAGER='vimpager'
+export PAGER='less'
 export PATH+=":$HOME/.gem/ruby/2.2.0/bin"
 
 if [ -d ~/bin ]; then
