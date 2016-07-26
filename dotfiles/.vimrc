@@ -181,4 +181,4 @@ function! OpenCurrentLine ()
 endfunction
 
 
-
+let NERDTreeIgnore = ['\.o$', '\.d$']
