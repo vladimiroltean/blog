@@ -41,6 +41,8 @@ Plug 'google/vim-searchindex'
 Plug 'chazy/cscope_maps'
 " For no particular purpose
 Plug 'https://github.com/vim-scripts/TeTrIs.vim'
+" Vim / Tmux pane split integration
+Plug 'christoomey/vim-tmux-navigator'
 
 " Add plugins to &runtimepath
 call plug#end()
