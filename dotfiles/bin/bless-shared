@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo chmod -R g=u $@
+sudo chgrp -R users $@
+for file in $@; do
+	find $file -type d -exec sudo chmod g+s {} \;
+done

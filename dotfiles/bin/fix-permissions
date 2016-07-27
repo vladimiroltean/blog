@@ -1,0 +1,5 @@
+#!/bin/bash
+
+paths="Videos Pictures Music .mozilla .local .gnome2 .gconf Downloads Desktop .config"
+bless-shared $paths
+echo "Done. Please make sure that umask is 002 in /etc/login.defs"
