@@ -1,0 +1,6 @@
+#!/bin/bash
+
+gtf 1600 900 50
+xrandr --newmode "1600x900_50.00"  97.04  1600 1680 1848 2096  900 901 904 926  -HSync +Vsync
+xrandr --addmode eDP-1 1600x900_50.00
+xrandr --output eDP-1 --mode 1600x900_50.00 
