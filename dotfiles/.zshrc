@@ -1,13 +1,5 @@
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/aldi/.zshrc'
+setopt appendhistory autocd
 
-autoload -Uz compinit
-compinit
-setopt autocd
-
-export SAVEHIST=10000
-export HISTFILE=~/.zhistory
-set inc_append_history
 #source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 autoload -Uz colors && colors

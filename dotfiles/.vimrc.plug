@@ -33,7 +33,16 @@ Plug 'tmhedberg/matchit'
 Plug 'drn/zoomwin-vim', { 'on': 'ZoomWin' }
 " For vimpager compatibility with git colors
 Plug 'https://github.com/vim-scripts/AnsiEsc.vim'
+" For marks
+Plug 'kshenoy/vim-signature'
+" At match %d out of %d matched
+Plug 'google/vim-searchindex'
+" For Cscope
+Plug 'chazy/cscope_maps'
+" For no particular purpose
 Plug 'https://github.com/vim-scripts/TeTrIs.vim'
+" Vim / Tmux pane split integration
+Plug 'christoomey/vim-tmux-navigator'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -48,7 +57,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/_ycm_extra_conf.py'
 " NERDTree
 
 " If the parameter is a directory, cd into it
-function s:CdIfDirectory(directory)
+function! s:CdIfDirectory(directory)
   let explicitDirectory = isdirectory(a:directory)
   let directory = explicitDirectory || empty(a:directory)
 
@@ -74,7 +83,7 @@ function s:CdIfDirectory(directory)
 endfunction
 
 " NERDTree utility function
-function s:UpdateNERDTree(...)
+function! s:UpdateNERDTree(...)
   let stay = 0
 
   if(exists("a:1"))
@@ -96,12 +105,12 @@ endfunction
 let NERDTreeHijackNetrw = 0
 let NERDTreeShowHidden = 1
 
-function! s:NERDTreeIsOpen()
+function! NERDTreeIsOpen()
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-function! s:NERDTreeSync(buffername)
-	if &modifiable && s:NERDTreeIsOpen() && strlen(a:buffername) > 0 && !&diff
+function! NERDTreeSync(buffername)
+	if &modifiable && NERDTreeIsOpen() && strlen(a:buffername) > 0 && !&diff
 		NERDTreeFind
 		wincmd l
 	endif

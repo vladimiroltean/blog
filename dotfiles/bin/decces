@@ -1,0 +1,60 @@
+#!/bin/bash
+
+soc=0xffe000000
+fman=0x400000
+fpm=0xc3000
+decceh=0x22c
+decces=0x0bc
+fman_hw_port_region=0x80000
+fmqm_eif=0x410
+fmqm_eie=0x408
+fdee=$((31-0))
+fdfupe=$((31-1))
+mur=$((31-6))
+qmi=$((31-1))
+fm_rstc=0x0cc
+rfm=$((31-0))
+fm_rcr=0x070
+fee=$((31-0))
+sfe=$((31-4))
+qmi_err=$((31-9))
+fm_epi=0x018
+
+#set -x
+
+echo "Enabling FM Double ECC Error Halt (DECCEH)"
+decceh_addr=$(printf 0x%x $(($soc + $fman + $fpm + $decceh)))
+#decceh_val=0xffffffff
+#decceh_val=$((1<<$mur))
+decceh_val=$((1<<$qmi))
+./iomem w32 $decceh_addr $decceh_val
+./iomem r32 $decceh_addr
+
+
+echo "Forcing Double ECC Error (FMQM_EIF)"
+fmqm_eif_addr=$(printf 0x%x $(($soc + $fman + $fman_hw_port_region + $fmqm_eif)))
+#fmqm_eif_val=$((1<<$fdee))
+fmqm_eif_val=$((1<<$fdee + 1<<$fdfupe))
+./iomem w32 $fmqm_eif_addr $fmqm_eif_val
+
+echo "Reading QMI Error (FM_EPI)"
+fm_epi_addr=$(printf 0x%x $(($soc + $fman + $fpm + $fm_epi)))
+./iomem r32 $fm_epi_addr
+
+echo "Reading Error Interrupt Event register (FMQM_EIE)"
+fmqm_eie_addr=$(printf 0x%x $(($soc + $fman + $fman_hw_port_region + $fmqm_eie)))
+./iomem r32 $fmqm_eie_addr
+
+echo "Reading Double ECC Error Source register (DECCES)"
+decces_addr=$(printf 0x%x $(($soc + $fman + $fpm + $decces)))
+./iomem r32 $decces_addr
+
+
+#echo "Forcing FMan reset"
+#fm_rstc_addr=$(printf 0x%x $(($soc + $fman + $fpm + $fm_rstc)))
+#fm_rstc_val=$((1<<$rfm))
+#./iomem w32 $fm_rstc_addr $fm_rstc_val
+
+echo "Reading FMan Rams Control and Event (FM_RCR)"
+fm_rcr_addr=$(printf 0x%x $(($soc + $fman + $fpm + $fm_rcr)))
+./iomem r32 $fm_rcr_addr
