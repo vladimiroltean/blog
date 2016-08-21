@@ -16,6 +16,7 @@ endif
 
 let &backupdir=s:vim_cache
 let &undodir=s:vim_cache
+let &dir=s:vim_cache
 
 " Maintain persistent undo history of files
 set undofile
