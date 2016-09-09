@@ -68,7 +68,7 @@ vmap <C-Down> ]egv
 
 " ag.vim
 nnoremap <leader>* :Ag <cword><CR>
-map <C-f> :NERDTreeClose<CR> :Ag<space>
+map <C-f> :Ag<space>
 
 
 "fugitive.vim

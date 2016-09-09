@@ -122,7 +122,7 @@ augroup AuNERDTreeCmd
 	autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 	autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
 	" close vim if the only window left open is a NERDTree?
-	autocmd AuNERDTreeCmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	"autocmd AuNERDTreeCmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 	" Highlight a file in NERDTree when opening it in a buffer
 	"autocmd AuNERDTreeCmd BufEnter * call s:NERDTreeSync(expand("<amatch>"))
 augroup END
