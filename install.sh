@@ -47,3 +47,5 @@ case $response in
 	;;
 esac
 
+chmod 0700 ~/.ssh
+chmod 0600 ~/.ssh/*
