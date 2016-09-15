@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'lervag/vimtex'
 Plug 'https://github.com/tpope/vim-dispatch'
 " Provides C-Up and C-Down maps for swapping lines
 Plug 'tpope/vim-unimpaired'
