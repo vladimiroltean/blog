@@ -1,0 +1,4 @@
+#! /bin/bash
+
+
+ssh alarm wol -i 192.168.1.2 40:8D:5C:E2:BF:FD
