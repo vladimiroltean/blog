@@ -1,0 +1,74 @@
+#!/bin/bash -u
+
+DRY_RUN=""
+UNPACKED_DIR=unpacked
+COMBINED_DID=combined
+
+argc=$#
+argv=( "$@" )
+
+i=0
+while [[ $i -lt $argc ]]; do
+	key="${argv[$i]}"
+	((i++))
+	case "$key" in
+		-h|--help)
+			echo "Usage: $0 --zip <opengapps.zip> --dir <opengapps dir>"
+			exit
+			;;
+		--dry-run)
+			DRY_RUN="--dry-run"
+			;;
+		-z|--zip)
+			OPENGAPPS_ZIP="${argv[$i]}"
+			((i++))
+			;;
+		-d|--dir)
+			OPENGAPPS_DIR="${argv[$i]}"
+			((i++))
+			;;
+		*)
+			echo "Unknown key $key"
+			exit
+			;;
+	esac
+done
+
+if [[ -z "${OPENGAPPS_DIR+x}" ]]; then
+	echo "-d|--dir: Must specify output dir for opengapps extraction!"
+	exit
+fi
+
+if [[ -z "${OPENGAPPS_ZIP+x}" ]]; then
+	echo "-z|--zip: Must specify input opengapps zip!"
+	exit
+fi
+
+pushd "$PWD"
+rm -rf "$OPENGAPPS_DIR"
+mkdir -p "$OPENGAPPS_DIR"
+unzip "$OPENGAPPS_ZIP" -d "$OPENGAPPS_DIR"
+
+cd "$OPENGAPPS_DIR"
+for archive in `find -type f -name "*.tar.lz"`; do
+	echo "Unpacking lzip archive $archive"
+	lzip -d "$archive"
+done
+
+mkdir -p "$UNPACKED_DIR"
+mkdir -p "$COMBINED_DID"
+
+for archive in `find -type f -name "*.tar"`; do
+	echo "Unpacking tar archive $archive"
+	tar xvf "$archive" -C "$UNPACKED_DIR"
+done
+
+for package in `ls $UNPACKED_DIR`; do
+	echo "Combining package $package..."
+	for pkgtype in `ls $UNPACKED_DIR/$package`; do
+		path="$UNPACKED_DIR/$package/$pkgtype/"
+		rsync -avr $DRY_RUN "$path" $COMBINED_DID
+	done
+done
+
+find $COMBINED_DID -type f -exec chmod 0644 {} \+

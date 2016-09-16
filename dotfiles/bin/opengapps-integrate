@@ -1,0 +1,63 @@
+#!/bin/bash -u
+
+DRY_RUN=""
+DEFAULT_SYSTEM_MOUNTPOINT=/mnt/loop/
+DEFAULT_SYSTEM=system.img
+
+argc=$#
+argv=( "$@" )
+
+i=0
+while [[ $i -lt $argc ]]; do
+	key="${argv[$i]}"
+	((i++))
+	case "$key" in
+		-h|--help)
+			echo "Usage: $0 --dir <opengapps dir>"
+			exit
+			;;
+		--dry-run)
+			DRY_RUN="--dry-run"
+			;;
+		-d|--dir)
+			OPENGAPPS_DIR="${argv[$i]}"
+			((i++))
+			;;
+		-s|--system)
+			SYSTEM="${argv[$i]}"
+			((i++))
+			;;
+		-m|--mountpoint)
+			SYSTEM_MOUNTPOINT="${argv[$i]}"
+			((i++))
+			;;
+		*)
+			echo "Unknown key $key"
+			exit
+			;;
+	esac
+done
+
+if [[ -z "${OPENGAPPS_DIR+x}" ]]; then
+	echo "-d|--dir: Must specify input opengapps dir!"
+	exit
+fi
+
+if [[ -z "${SYSTEM+x}" ]]; then
+	SYSTEM="$DEFAULT_SYSTEM"
+	echo "Using default system image: $SYSTEM"
+fi
+
+if [[ -z "${SYSTEM_MOUNTPOINT+x}" ]]; then
+	SYSTEM_MOUNTPOINT="$DEFAULT_SYSTEM_MOUNTPOINT"
+	echo "Mounting at default location: $SYSTEM_MOUNTPOINT"
+fi
+
+sudo e2fsck -f $SYSTEM
+sudo resize2fs $SYSTEM 1600M
+sudo mount -o loop $SYSTEM $SYSTEM_MOUNTPOINT
+sudo rsync -avr $DRY_RUN $OPENGAPPS_DIR $SYSTEM_MOUNTPOINT
+sudo rm -rf $SYSTEM_MOUNTPOINT/priv-app/PackageInstaller
+sudo umount $SYSTEM_MOUNTPOINT
+
+cd $SYSTEM_MOUNTPOINT
