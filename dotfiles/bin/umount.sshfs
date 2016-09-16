@@ -1,0 +1,34 @@
+#!/bin/bash -u
+
+DEFAULT_LOCATION=/mnt/sshfs
+
+argc=$#
+argv=( "$@" )
+
+i=0
+while [[ $i -lt $argc ]]; do
+	key="${argv[$i]}"
+	((i++))
+	case "$key" in
+		-h|--help)
+			echo "Usage: $0 --location <directory>"
+			exit
+			;;
+		-l|--location)
+			LOCATION="${argv[$i]}"
+			((i++))
+			;;
+		*)
+			echo "Unknown key $key"
+			exit
+			;;
+	esac
+done
+
+if [[ -z "${LOCATION+x}" ]]; then
+	LOCATION=$DEFAULT_LOCATION
+	echo "Unmounting default location $LOCATION"
+fi
+
+fusermount -u $LOCATION
+

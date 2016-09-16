@@ -1,0 +1,43 @@
+#!/bin/bash -u
+
+DEFAULT_LOCATION=/mnt/sshfs
+
+argc=$#
+argv=( "$@" )
+
+if [[ $argc -lt 2 ]]; then
+	echo "Usage: $0 --id <user@hostname> --location <directory>"
+	exit
+fi
+
+i=0
+while [[ $i -lt $argc ]]; do
+	key="${argv[$i]}"
+	((i++))
+	case "$key" in
+		-i|--id)
+			IDENTITY="${argv[$i]}"
+			((i++))
+			;;
+		-l|--location)
+			LOCATION="${argv[$i]}"
+			((i++))
+			;;
+		*)
+			echo "Unknown key $key"
+			exit
+			;;
+	esac
+done
+
+if [[ -z "${IDENTITY:-}" ]]; then
+	echo "Identity not defined"
+	exit
+fi
+
+if [[ -z "${LOCATION+x}" ]]; then
+	LOCATION=$DEFAULT_LOCATION
+	echo "Using default location $LOCATION as mount point."
+fi
+
+sshfs $IDENTITY:/ $LOCATION -o allow_other
