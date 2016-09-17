@@ -1,3 +1,3 @@
 #!/bin/bash
 
-PS4='Line ${LINENO}: ' bash -x $@
+PS4='Line ${LINENO}: ' bash -x "$@"
