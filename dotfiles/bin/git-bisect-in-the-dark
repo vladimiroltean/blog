@@ -1,0 +1,46 @@
+#!/bin/bash
+
+function usage {
+	echo "Usage: $0 --newest-commit <ref> --oldest-commit <ref> --remote-branch <name>"
+	echo "First you have to create a git repository with your rogue (untracked) source files."
+	echo "Then you have to add that repository as a remote to this one."
+	echo "You have to specify it to the script via --remote-branch"
+	echo "To reduce the search time, you should specify newest and oldest commit to compare"
+	exit
+}
+
+argc=$#
+argv=( "$@" )
+
+if [[ $argc -lt 2 ]]; then
+	usage
+fi
+
+i=0
+while [[ $i -lt $argc ]]; do
+	key="${argv[$i]}"
+	((i++))
+	case "$key" in
+		-n|--newest-commit)
+			newest="${argv[$i]}"
+			((i++))
+			;;
+		-o|--oldest-commit)
+			oldest="${argv[$i]}"
+			((i++))
+			;;
+		-r|--remote-branch)
+			remote="${argv[$i]}"
+			((i++))
+		*)
+			usage
+			;;
+	esac
+done
+
+for rev in $(git rev-list "$newest" ^"$oldest"); do
+	echo "Commit $rev has..."
+	git diff --shortstat $remote $rev;
+	echo ""
+done
+
