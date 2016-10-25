@@ -1,0 +1,65 @@
+#!/bin/bash
+
+function usage {
+	echo "Usage:"
+	echo "$0 <symbol-file> <binary>"
+	echo "Items in the symbol file must be in the following format, one per line:"
+	echo "<virtual-address-in-hex> <section-name> <symbol-name>"
+}
+
+symbol_file="$1"
+binary="$2"
+
+if [[ -z "${symbol_file:-}" ]]; then
+	echo "Symbol file not specified."
+	usage
+	exit
+fi
+
+if [[ -z "${binary:-}" ]]; then
+	echo "Binary not specified."
+	usage
+	exit
+fi
+
+cp $binary $binary.temp
+
+strip $binary.temp
+while read -r line; do
+	elems=($line)
+	# Read symbol name, address and section from symbol file
+	addr=${elems[0]}
+	section=${elems[1]}
+	symbol=${elems[2]}
+
+	# Find base address of section in
+	# the original binary file
+	section_info=(`readelf --sections $binary | grep $section`)
+	if [[ ${#section_info[@]} == 0 ]]; then
+		echo "Could not find section $section in binary $binary!"
+		rm -f $binary.temp
+		exit
+	fi
+	# Not-so-nice hack to work around a column like
+	# [ 1] which technically counts as two columns and
+	# messes with our numbering
+	if [[ ${section_info[0]} == "[" ]]; then
+		section_info=(${section_info[@]:1})
+	fi
+	base_addr=${section_info[3]}
+
+	# Convert whatever form of hex they were stored in into numbers
+	# Strip them of the "0x" prefix, if they had one
+	addr=${addr#0x}
+	addr=$((16#$addr))
+	base_addr=${base_addr#0x}
+	base_addr=$((16#$base_addr))
+
+	offset=$(($addr - $base_addr))
+	printf "Adding symbol \"%s\" to section %s, virtual address 0x%X, offset 0x%X\n" \
+	       $symbol $section $addr $offset
+	objcopy --add-symbol "$symbol"="$section":"$offset" $binary.temp
+done < "$symbol_file"
+
+rm -f $binary
+mv $binary.temp $binary
