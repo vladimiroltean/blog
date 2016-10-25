@@ -56,6 +56,10 @@ fi
 sudo e2fsck -f $SYSTEM
 sudo resize2fs $SYSTEM 1600M
 sudo mount -o loop $SYSTEM $SYSTEM_MOUNTPOINT
+if [[ -n "`mount | grep $SYSTEM_MOUNTPOINT`" ]]; then
+	echo "Mount failed!"
+	exit
+fi
 sudo rsync -avr $DRY_RUN $OPENGAPPS_DIR $SYSTEM_MOUNTPOINT
 sudo rm -rf $SYSTEM_MOUNTPOINT/priv-app/PackageInstaller
 sudo umount $SYSTEM_MOUNTPOINT
