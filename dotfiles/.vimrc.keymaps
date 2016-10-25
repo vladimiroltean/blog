@@ -46,6 +46,7 @@ imap <leader>g <ESC>:GundoToggle<CR>
 
 nnoremap <F3>  :nohlsearch<CR>
 nnoremap <F6>  :YcmCompleter<CR>
+nnoremap <F12> :call ExpandCMacro()<CR>
 
 map <leader>f  :NERDTreeFind<CR>
 map <leader>n  :NERDTreeToggle<CR> :NERDTreeMirror<CR>
