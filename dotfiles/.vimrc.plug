@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'lervag/vimtex'
-Plug 'fidian/hexmode'
 Plug 'https://github.com/tpope/vim-dispatch'
 " Provides C-Up and C-Down maps for swapping lines
 Plug 'tpope/vim-unimpaired'
@@ -41,6 +40,8 @@ Plug 'kshenoy/vim-signature'
 Plug 'google/vim-searchindex'
 " For Cscope
 Plug 'chazy/cscope_maps'
+" For no particular purpose
+Plug 'https://github.com/vim-scripts/TeTrIs.vim'
 " Vim / Tmux pane split integration
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -53,5 +54,76 @@ let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
                         \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 let g:ycm_global_ycm_extra_conf = '~/.vim/_ycm_extra_conf.py'
 
+
+" NERDTree
+
+" If the parameter is a directory, cd into it
+function! s:CdIfDirectory(directory)
+  let explicitDirectory = isdirectory(a:directory)
+  let directory = explicitDirectory || empty(a:directory)
+
+  if explicitDirectory
+    exe "cd " . fnameescape(a:directory)
+  endif
+
+  " Allows reading from stdin
+  " ex: git diff | mvim -R -
+  if strlen(a:directory) == 0
+    return
+  endif
+
+  if directory
+    NERDTree
+    wincmd p
+    bd
+  endif
+
+  if explicitDirectory
+    wincmd p
+  endif
+endfunction
+
+" NERDTree utility function
+function! s:UpdateNERDTree(...)
+  let stay = 0
+
+  if(exists("a:1"))
+    let stay = a:1
+  end
+
+  if exists("t:NERDTreeBufName")
+    let nr = bufwinnr(t:NERDTreeBufName)
+    if nr != -1
+      exe nr . "wincmd w"
+      exe substitute(mapcheck("R"), "<CR>", "", "")
+      if !stay
+        wincmd p
+      end
+    endif
+  endif
+endfunction
+
 let NERDTreeHijackNetrw = 0
 let NERDTreeShowHidden = 1
+
+function! NERDTreeIsOpen()
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+function! NERDTreeSync(buffername)
+	if &modifiable && NERDTreeIsOpen() && strlen(a:buffername) > 0 && !&diff
+		NERDTreeFind
+		wincmd l
+	endif
+endfunction
+
+augroup AuNERDTreeCmd
+	" Open NERDTree on left-hand side if requested to open a directory
+	autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
+	autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
+	" close vim if the only window left open is a NERDTree?
+	"autocmd AuNERDTreeCmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	" Highlight a file in NERDTree when opening it in a buffer
+	"autocmd AuNERDTreeCmd BufEnter * call s:NERDTreeSync(expand("<amatch>"))
+augroup END
+

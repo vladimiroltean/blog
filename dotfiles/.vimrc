@@ -2,7 +2,6 @@ set nocp
 " Break compatibility with vi
 
 set shortmess=a
-source ~/.vimrc.functions
 source ~/.vimrc.plug
 source ~/.vimrc.keymaps
 
@@ -157,4 +156,30 @@ if has("autocmd")
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Custom functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Downloaded from
+" github.com/gotbletu/shownotes/blob/master/mlocate_vdiscover_vim_locate.txt
+
+" credits
+" http://vim.wikia.com/wiki/Open_a_web-browser_with_the_URL_in_the_current_line
+" section 41.6 using functions http://vimdoc.sourceforge.net/htmldoc/usr_41.html
+" devnull https://code.google.com/p/vimwiki/issues/detail?id=401
+" put qoutes around line http://stackoverflow.com/a/3218805
+" bypass pressing Enter to continue with extra <CR> http://stackoverflow.com/a/890831
+
+function! OpenCurrentLine ()
+  " grab current line
+  let line = getline (".")
+  " add qoutes around the current line to avoid spaces/symbols issues
+  let line = substitute(line, '^\(.*\)$', '"\1"', "g")
+  " open with default system app, no messy output msg
+  exec "!xdg-open" line '>&/dev/null &'
+endfunction
+
+
 
